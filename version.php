@@ -31,6 +31,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_kuink'; // Declare the type and name of this plugin.
 
-$plugin->version  = 2015121500;           // If version == 0 then module will not be installed
+$plugin->version  = 2018052105;           // If version == 0 then module will not be installed
 $plugin->requires = 2010031900;  // Requires this Moodle version
 $plugin->cron     = 60;           // Period for cron to check this module (secs)

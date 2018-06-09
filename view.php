@@ -55,7 +55,7 @@ if ($id) {
 
 require_login($course, true, $cm);
 
-add_to_log($course->id, 'kuink', 'view', "view.php?id=$cm->id", $kuink->name, $cm->id);
+//add_to_log($course->id, 'kuink', 'view', "view.php?id=$cm->id", $kuink->name, $cm->id);
 
 /// Print the page header
 

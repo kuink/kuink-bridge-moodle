@@ -31,6 +31,9 @@ require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/webservice
 
 global $KUINK_INCLUDE_PATH, $KUINK_BRIDGE_CFG;
 
+//Turn off all error reporting to avoid garbage in response
+error_reporting(0);
+
 include ('./bridge_config.php');
 
 require_once($KUINK_INCLUDE_PATH."kuink_includes.php");
