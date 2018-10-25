@@ -8,7 +8,7 @@ global $KUINK_BRIDGE_CFG;
 global $CFG;
 if (!isset($KUINK_BRIDGE_CFG))
 	$KUINK_BRIDGE_CFG = new stdClass();
-$KUINK_BRIDGE_CFG->loginHttps = $CFG->loginhttps;
+$KUINK_BRIDGE_CFG->loginHttps = isset($CFG->loginhttps) ? $CFG->loginhttps : '';
 $KUINK_BRIDGE_CFG->wwwRoot = $CFG->wwwroot;
 $KUINK_BRIDGE_CFG->dirRoot = $CFG->dirroot;
 $KUINK_BRIDGE_CFG->dataRoot = $CFG->dataroot;
