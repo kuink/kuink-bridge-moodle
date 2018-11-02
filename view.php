@@ -55,24 +55,6 @@ if ($id) {
 
 require_login($course, true, $cm);
 
-//add_to_log($course->id, 'kuink', 'view', "view.php?id=$cm->id", $kuink->name, $cm->id);
-
-/// Print the page header
-
-// other things you may want to set - remove if not needed
-//$PAGE->set_cacheable(false);
-//$PAGE->set_focuscontrol('some-html-id');
-
-//pmt. added to make a clear output when generating rss for example
-$templ = isset($_GET['template']) ? (string)$_GET['template'] : '';
-
-// Output starts here
-//if ($templ != "none") //pmt.added
-//{
-//    echo $OUTPUT->header();
-//}
-
-
 //################################ KUINK START #######################################
 global $KUINK_INCLUDE_PATH;
 $KUINK_INCLUDE_PATH = realpath('').'/kuink-core/';
@@ -85,10 +67,16 @@ include ('./bridge_config.php');
 if (!empty($CFG->loginhttps))
   if (!isset($_SERVER['HTTPS'])) {
     $PAGE->set_url('/mod/kuink/view.php?'.$_SERVER['QUERY_STRING']);
-    //die();
     $PAGE->verify_https_required();
   }
 
-include ('./kuink-core/view.php');
+require_once ('./kuink-core/bootstrap/autoload.php');
+$layoutAdapter = \Kuink\UI\Layout\Layout::getInstance ();
+$layoutAdapter->setCache ( false );
+$layoutAdapter->setTheme ( $KUINK_BRIDGE_CFG->theme );
 
+$kuinkCore = new Kuink\Core($KUINK_BRIDGE_CFG, $layoutAdapter);
+$kuinkCore->run();
+
+$layoutAdapter->render();
 //################################ KUINK END #######################################

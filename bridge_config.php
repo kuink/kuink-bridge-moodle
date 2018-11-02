@@ -15,6 +15,7 @@ $KUINK_BRIDGE_CFG->dataRoot = $CFG->dataroot;
 $KUINK_BRIDGE_CFG->appRoot = $CFG->dataroot.'/neon/'; //Legacy: Temporary for neon compatibility
 $KUINK_BRIDGE_CFG->kuinkRoot = 'mod/kuink';
 $KUINK_BRIDGE_CFG->theme = 'adminlte';
+$KUINK_BRIDGE_CFG->bridge = 'kuink-bridge-moodle';
 $KUINK_BRIDGE_CFG->uploadVirtualPrefix = ''; //Only for neon compatibility. Leave blank in a fresh install.
 
 //######## Authentication stuff ########
