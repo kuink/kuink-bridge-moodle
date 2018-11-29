@@ -8,7 +8,13 @@ require_once($CFG->libdir.'/weblib.php');
 require_once($CFG->libdir.'/filelib.php');
 
 //################################ KUINK START #######################################
-global $KUINK_INCLUDE_PATH, $KUINK_BRIDGE_CFG;
+global $KUINK_INCLUDE_PATH, $KUINK_BRIDGE_CFG, $KUINK;
+$KUINK = new stdClass();
+$KUINK->id = null;
+$KUINK->fullname = '';
+$KUINK->appname = 'framework';
+$KUINK->config = '<Configuration/>';
+
 include ('./bridge_config.php');
 
 $type = $_GET ['type'];

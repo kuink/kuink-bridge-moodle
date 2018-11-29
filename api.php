@@ -26,8 +26,12 @@ require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/config.php
 require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/login/lib.php');
 require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/webservice/lib.php');
 
-global $KUINK_INCLUDE_PATH, $KUINK_BRIDGE_CFG;
-
+global $KUINK_INCLUDE_PATH, $KUINK_BRIDGE_CFG, $KUINK;
+$KUINK = new stdClass();
+$KUINK->id = null;
+$KUINK->fullname = '';
+$KUINK->appname = 'framework';
+$KUINK->config = '<Configuration/>';
 //Turn off all error reporting to avoid garbage in response
 error_reporting(0);
 

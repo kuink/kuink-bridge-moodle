@@ -1,10 +1,9 @@
 <?php
 
 //################################ KUINK START #######################################
-global $KUINK_INCLUDE_PATH;
+global $KUINK_INCLUDE_PATH, $KUINK_BRIDGE_CFG, $KUINK;
 $KUINK_INCLUDE_PATH = realpath('').'/kuink-core/';
 
-global $KUINK_BRIDGE_CFG;
 global $CFG;
 if (!isset($KUINK_BRIDGE_CFG))
 	$KUINK_BRIDGE_CFG = new stdClass();
@@ -39,12 +38,10 @@ if(has_capability('moodle/site:config', $courseContext)) {
 	$roles[] = 'framework.admin';
 }
 
-
-//var_dump($KUINK_BRIDGE_CFG->auth->user);
 $KUINK_BRIDGE_CFG->auth = new stdClass();
 
-$KUINK_BRIDGE_CFG->application = $kuink->appname;
-$KUINK_BRIDGE_CFG->configuration = $kuink->config;
+$KUINK_BRIDGE_CFG->application = $KUINK->appname;
+$KUINK_BRIDGE_CFG->configuration = $KUINK->config;
 
 $KUINK_BRIDGE_CFG->auth->roles = $roles;
 $KUINK_BRIDGE_CFG->auth->isAdmin = $isAdmin;
@@ -57,12 +54,8 @@ $KUINK_BRIDGE_CFG->auth->user->lastName = $USER->lastname;
 $KUINK_BRIDGE_CFG->auth->user->lang = $USER->lang;
 $KUINK_BRIDGE_CFG->auth->sessionKey = sesskey();
 
-
-GLOBAL $course;
-//var_dump($course);
 $KUINK_BRIDGE_CFG->trigger = new stdClass; //The url to set in breadcrumb after home. On other bridges this is the external point where kuink was triggered. Allow get back to that url
-$KUINK_BRIDGE_CFG->trigger->url = $KUINK_BRIDGE_CFG->wwwRoot . '/course/view.php?id=' . $course->id;
-$KUINK_BRIDGE_CFG->trigger->label = $course->fullname;
-//Global $course; 'href' => $url . '/course/view.php?id=' . $course->id,
+$KUINK_BRIDGE_CFG->trigger->url = $KUINK_BRIDGE_CFG->wwwRoot . '/course/view.php?id=' . $KUINK->id;
+$KUINK_BRIDGE_CFG->trigger->label = $KUINK->fullname;
 //################################ KUINK END #######################################
 ?>

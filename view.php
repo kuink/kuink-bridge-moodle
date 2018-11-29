@@ -59,7 +59,10 @@ require_login($course, true, $cm);
 global $KUINK_INCLUDE_PATH;
 $KUINK_INCLUDE_PATH = realpath('').'/kuink-core/';
 
-global $KUINK_BRIDGE_CFG;
+global $KUINK_BRIDGE_CFG, $KUINK;
+
+$KUINK = $kuink;
+$KUINK->fullname = $course->fullname;
 
 include ('./bridge_config.php');
 

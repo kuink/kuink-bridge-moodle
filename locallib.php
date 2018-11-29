@@ -51,7 +51,7 @@ function kuink_isnull($obj)
 
 
 //Private debug functions
-function kuink_mydebug($name, $value)
+function kuink_mydebug($name, $value='')
 {
 	$html = '<div style="background-color:#BBFF00; font-size:small; border: solid 1px; border-color:#ffffff;"><b><i>->&nbsp;</i>'.$name.'</b> <i>' . $value.'</i></div>';
 	$layout = \kuink\UI\Layout\Layout::getInstance();
@@ -60,7 +60,7 @@ function kuink_mydebug($name, $value)
 	return;
 }
 
-function kuink_mydebugxml($name, $xml)
+function kuink_mydebugxml($name, $xml=null)
 {
 	$xml2print = str_replace('>','&gt;',$xml);
 	$xml2print = str_replace('<','&lt;',$xml);
@@ -69,7 +69,7 @@ function kuink_mydebugxml($name, $xml)
 	return 1;
 }
 
-function kuink_mydebugobj($name, $obj)
+function kuink_mydebugobj($name, $obj=null)
 {
 	$value = var_export($obj,true);
 	$order   = array("\r\n", "\n", "\r");
