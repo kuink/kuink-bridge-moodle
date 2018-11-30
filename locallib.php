@@ -53,6 +53,8 @@ function kuink_isnull($obj)
 //Private debug functions
 function kuink_mydebug($name, $value='')
 {
+	$name = is_array($name) ? 'Array' : (string)$name; 
+	$value = is_array($value) ? 'Array' : (string)$value; 
 	$html = '<div style="background-color:#BBFF00; font-size:small; border: solid 1px; border-color:#ffffff;"><b><i>->&nbsp;</i>'.$name.'</b> <i>' . $value.'</i></div>';
 	$layout = \kuink\UI\Layout\Layout::getInstance();
 	$layout->addHtml($html, 'debugMessages');
