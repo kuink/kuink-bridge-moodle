@@ -14,6 +14,7 @@ $KUINK_BRIDGE_CFG->dataRoot = $CFG->dataroot;
 $KUINK_BRIDGE_CFG->appRoot = $CFG->dataroot.'/neon/'; //Legacy: Temporary for neon compatibility
 $KUINK_BRIDGE_CFG->kuinkRoot = 'mod/kuink';
 $KUINK_BRIDGE_CFG->theme = 'adminlte';
+$KUINK_BRIDGE_CFG->themeRoot = '';
 $KUINK_BRIDGE_CFG->bridge = 'kuink-bridge-moodle';
 $KUINK_BRIDGE_CFG->uploadVirtualPrefix = ''; //Only for neon compatibility. Leave blank in a fresh install.
 
@@ -55,7 +56,7 @@ $KUINK_BRIDGE_CFG->auth->user->lang = $USER->lang;
 $KUINK_BRIDGE_CFG->auth->sessionKey = sesskey();
 
 $KUINK_BRIDGE_CFG->trigger = new stdClass; //The url to set in breadcrumb after home. On other bridges this is the external point where kuink was triggered. Allow get back to that url
-$KUINK_BRIDGE_CFG->trigger->url = $KUINK_BRIDGE_CFG->wwwRoot . '/course/view.php?id=' . $KUINK->id;
-$KUINK_BRIDGE_CFG->trigger->label = $KUINK->fullname;
+$KUINK_BRIDGE_CFG->trigger->url = $KUINK_BRIDGE_CFG->wwwRoot . '/course/view.php?id=' . $KUINK->course->id;
+$KUINK_BRIDGE_CFG->trigger->label = $KUINK->course->fullname;
 //################################ KUINK END #######################################
 ?>

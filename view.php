@@ -60,9 +60,10 @@ global $KUINK_INCLUDE_PATH;
 $KUINK_INCLUDE_PATH = realpath('').'/kuink-core/';
 
 global $KUINK_BRIDGE_CFG, $KUINK;
-
-$KUINK = $kuink;
-$KUINK->fullname = $course->fullname;
+$KUINK = $course;
+$KUINK->appname = $kuink->appname;
+$KUINK->config = $kuink->config;
+$KUINK->course = $course;
 
 include ('./bridge_config.php');
 
