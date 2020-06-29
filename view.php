@@ -71,7 +71,7 @@ include ('./bridge_config.php');
 if (!empty($CFG->loginhttps))
   if (!isset($_SERVER['HTTPS'])) {
     $PAGE->set_url('/mod/kuink/view.php?'.$_SERVER['QUERY_STRING']);
-    $PAGE->verify_https_required();
+    //$PAGE->verify_https_required();
   }
 
 require_once ('./kuink-core/bootstrap/autoload.php');
