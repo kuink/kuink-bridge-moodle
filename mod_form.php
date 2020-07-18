@@ -54,17 +54,21 @@ class mod_kuink_mod_form extends moodleform_mod {
         $mform->addHelpButton('name', 'kuinkname', 'kuink');
 
     /// Adding the standard "intro" and "introformat" fields
-        moodleform_mod::standard_intro_elements();
+        // Adding the standard "intro" and "introformat" fields.
+        if ($CFG->branch >= 29) {
+            $this->standard_intro_elements();
+        } else {
+            $this->add_intro_editor();
+        }
 
 //-------------------------------------------------------------------------------
     /// Adding the rest of kuink settings, spreeading all them into this fieldset
     /// or adding more fieldsets ('header' elements) if needed for better logic
-        $mform->addElement('text', 'appname', get_string('appname', 'kuink'), array('size'=>'64'));
+        $mform->addElement('text', 'appname', get_string('appname', 'mycustomapp'), array('size'=>'64'));
         $mform->setType('appname', PARAM_TEXT);
         $mform->addRule('appname', null, 'required', null, 'client');
 
-        $mform->addElement('textarea', 'config', get_string('config', 'kuink') ,'maxlength="2048" wrap="virtual" rows="15" cols="80"');
-        //$mform->setType('opcoesano', PARAM_TEXT);
+        $mform->addElement('textarea', 'config', get_string('config', 'mycustomapp') ,'maxlength="2048" wrap="virtual" rows="15" cols="80"');
         $mform->addRule('config', null, 'required', null, 'client');
         $mform->setDefault('config', '<Configuration/>');
 //-------------------------------------------------------------------------------
@@ -76,3 +80,4 @@ class mod_kuink_mod_form extends moodleform_mod {
 
     }
 }
+
