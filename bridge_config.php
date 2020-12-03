@@ -11,12 +11,13 @@ $KUINK_BRIDGE_CFG->loginHttps = isset($CFG->loginhttps) ? $CFG->loginhttps : '';
 $KUINK_BRIDGE_CFG->wwwRoot = $CFG->wwwroot;
 $KUINK_BRIDGE_CFG->dirRoot = $CFG->dirroot;
 $KUINK_BRIDGE_CFG->dataRoot = $CFG->dataroot;
-$KUINK_BRIDGE_CFG->appRoot = $CFG->dataroot.'/neon/'; //Legacy: Temporary for neon compatibility
+$KUINK_BRIDGE_CFG->appRoot = $KUINK_BRIDGE_CFG->dataRoot.'/neon/';		//Legacy: Temporary for neon compatibility
+$KUINK_BRIDGE_CFG->uploadRoot = $KUINK_BRIDGE_CFG->dataRoot.'/neon/';	//Legacy: Temporary for neon compatibility
+$KUINK_BRIDGE_CFG->uploadVirtualPrefix = 'neon/files/';		//Only for neon compatibility. Leave blank in a fresh install.
 $KUINK_BRIDGE_CFG->kuinkRoot = 'mod/kuink';
 $KUINK_BRIDGE_CFG->theme = 'adminlte';
 $KUINK_BRIDGE_CFG->themeRoot = '';
 $KUINK_BRIDGE_CFG->bridge = 'kuink-bridge-moodle';
-$KUINK_BRIDGE_CFG->uploadVirtualPrefix = ''; //Only for neon compatibility. Leave blank in a fresh install.
 
 //######## Authentication stuff ########
 global $USER;
@@ -47,12 +48,12 @@ $KUINK_BRIDGE_CFG->configuration = $KUINK->config;
 $KUINK_BRIDGE_CFG->auth->roles = $roles;
 $KUINK_BRIDGE_CFG->auth->isAdmin = $isAdmin;
 $KUINK_BRIDGE_CFG->auth->currentRole = $currentRole;
-
 $KUINK_BRIDGE_CFG->auth->user = new stdClass();
 $KUINK_BRIDGE_CFG->auth->user->id = $USER->idnumber;
 $KUINK_BRIDGE_CFG->auth->user->firstName = $USER->firstname;
 $KUINK_BRIDGE_CFG->auth->user->lastName = $USER->lastname;
 $KUINK_BRIDGE_CFG->auth->user->lang = $USER->lang;
+$KUINK_BRIDGE_CFG->auth->user->timezone = $USER->timezone;
 $KUINK_BRIDGE_CFG->auth->sessionKey = sesskey();
 
 $KUINK_BRIDGE_CFG->trigger = new stdClass; //The url to set in breadcrumb after home. On other bridges this is the external point where kuink was triggered. Allow get back to that url

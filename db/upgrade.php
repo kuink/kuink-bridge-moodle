@@ -41,6 +41,7 @@ defined('MOODLE_INTERNAL') || die();
  */
 function xmldb_kuink_upgrade($oldversion) {
 
-
+    //die($plugin->version);
+    //upgrade_mod_savepoint(true, 2020090702, 'kuink');
     return true;
 }

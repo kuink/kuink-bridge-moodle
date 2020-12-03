@@ -30,7 +30,8 @@
 defined('MOODLE_INTERNAL') || die();
 $plugin->component = 'mod_kuink';
 //$plugin->release = '0.9.0';
-$plugin->version = 2020070700;
+//$plugin->version = 2020070700;
+$plugin->version = 2020090703;
 //$plugin->requires = 2010031900;
 //$plugin->maturity = MATURITY_BETA;
 //$plugin->cron     = 60;           // Period for cron to check this module (secs)
