@@ -54,7 +54,6 @@ if ($id) {
 }
 
 require_login($course, true, $cm);
-die('HERE');
 //################################ KUINK START #######################################
 global $KUINK_INCLUDE_PATH;
 $KUINK_INCLUDE_PATH = realpath('').'/kuink-core/';
@@ -73,7 +72,7 @@ if (!empty($CFG->loginhttps))
     $PAGE->set_url('/mod/kuink/view.php?'.$_SERVER['QUERY_STRING']);
     //$PAGE->verify_https_required();
   }
-
+  die('Before autoload');
 require_once ('./kuink-core/bootstrap/autoload.php');
 $layoutAdapter = \Kuink\UI\Layout\Layout::getInstance ();
 $layoutAdapter->setCache ( false );
