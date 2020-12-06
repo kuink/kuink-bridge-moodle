@@ -54,7 +54,7 @@ if ($id) {
 }
 
 require_login($course, true, $cm);
-
+die('HERE');
 //################################ KUINK START #######################################
 global $KUINK_INCLUDE_PATH;
 $KUINK_INCLUDE_PATH = realpath('').'/kuink-core/';
