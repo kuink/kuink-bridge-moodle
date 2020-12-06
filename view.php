@@ -74,7 +74,6 @@ if (!empty($CFG->loginhttps))
   }
   
 require_once ('./kuink-core/bootstrap/autoload.php');
-die('After autoload');
 $layoutAdapter = \Kuink\UI\Layout\Layout::getInstance ();
 $layoutAdapter->setCache ( false );
 $layoutAdapter->setTheme ( $KUINK_BRIDGE_CFG->theme );
