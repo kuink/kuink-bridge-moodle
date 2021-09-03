@@ -19,6 +19,7 @@ $KUINK_BRIDGE_CFG->kuinkRoot = 'mod/kuink';
 $KUINK_BRIDGE_CFG->theme = 'adminlte';
 $KUINK_BRIDGE_CFG->themeRoot = '';
 $KUINK_BRIDGE_CFG->bridge = 'kuink-bridge-moodle';
+$KUINK_BRIDGE_CFG->useTransactions = true;
 
 //######## Authentication stuff ########
 global $USER;
