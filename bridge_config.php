@@ -51,6 +51,7 @@ $KUINK_BRIDGE_CFG->auth->roles = $roles;
 $KUINK_BRIDGE_CFG->auth->isAdmin = $isAdmin;
 $KUINK_BRIDGE_CFG->auth->currentRole = $currentRole;
 $KUINK_BRIDGE_CFG->auth->user = new stdClass();
+$KUINK_BRIDGE_CFG->auth->user->id_bridge = $USER->id;
 $KUINK_BRIDGE_CFG->auth->user->id = $USER->idnumber;
 $KUINK_BRIDGE_CFG->auth->user->firstName = $USER->firstname;
 $KUINK_BRIDGE_CFG->auth->user->lastName = $USER->lastname;

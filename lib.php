@@ -34,6 +34,8 @@ function kuink_supports($feature) {
     switch ($feature) {
         case FEATURE_MOD_INTRO:
             return true;
+        case FEATURE_BACKUP_MOODLE2:
+            return true;            
         default:
             return null;
     }
@@ -96,4 +98,28 @@ function kuink_delete_instance($id) {
     $DB->delete_records('kuink', array('id' => $id));
 
     return true;
+}
+
+/**
+ * Export kuink resource contents
+ *
+ * @return array of file content
+ */
+function kuink_export_contents($cm, $baseurl) {
+    global $CFG, $DB;
+    require_once("$CFG->dirroot/mod/url/locallib.php");
+    $contents = array();
+    $context = context_module::instance($cm->id);
+
+    $course = $DB->get_record('course', array('id'=>$cm->course), '*', MUST_EXIST);
+    $record = $DB->get_record('kuink', array('id'=>$cm->instance));
+
+    $content = array();
+    $content['type'] = 'kuink';
+    $content['name'] = $record->name;
+    $content['appname'] = $record->appname;
+    $content['config'] = $record->config;
+    $contents[] = $content;
+
+    return $contents;
 }
