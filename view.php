@@ -57,6 +57,8 @@ require_login($course, true, $cm);
 global $KUINK_INCLUDE_PATH;
 $KUINK_INCLUDE_PATH = realpath('').'/kuink-core/';
 
+session_start();
+
 global $KUINK_BRIDGE_CFG, $KUINK, $KUINK_TRACE;
 $KUINK = $course;
 $KUINK->appname = $kuink->appname;
