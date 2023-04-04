@@ -33,7 +33,6 @@ require_once('locallib.php');
 require_once($CFG->libdir.'/weblib.php');
 require_once($CFG->libdir.'/filelib.php');
 
-
 //for all dates, set utc timezone. jmpatricio
 date_default_timezone_set('UTC');
 
@@ -54,41 +53,48 @@ if ($id) {
 }
 
 require_login($course, true, $cm);
-
-add_to_log($course->id, 'kuink', 'view', "view.php?id=$cm->id", $kuink->name, $cm->id);
-
-/// Print the page header
-
-// other things you may want to set - remove if not needed
-//$PAGE->set_cacheable(false);
-//$PAGE->set_focuscontrol('some-html-id');
-
-//pmt. added to make a clear output when generating rss for example
-$templ = isset($_GET['template']) ? (string)$_GET['template'] : '';
-
-// Output starts here
-//if ($templ != "none") //pmt.added
-//{
-//    echo $OUTPUT->header();
-//}
-
-
 //################################ KUINK START #######################################
 global $KUINK_INCLUDE_PATH;
 $KUINK_INCLUDE_PATH = realpath('').'/kuink-core/';
 
-global $KUINK_BRIDGE_CFG;
+session_start();
+
+global $KUINK_BRIDGE_CFG, $KUINK, $KUINK_TRACE;
+$KUINK = $course;
+$KUINK->appname = $kuink->appname;
+$KUINK->config = $kuink->config;
+$KUINK->course = $course;
 
 include ('./bridge_config.php');
 
+$isAdmin = false;
+$courseContext = get_context_instance(CONTEXT_COURSE, $course->id);
+if(has_capability('moodle/site:config', $courseContext)) {
+  $isAdmin = true;
+  $performanceStart = microtime(true);
+}
 //Force HTTPS
 if (!empty($CFG->loginhttps))
   if (!isset($_SERVER['HTTPS'])) {
     $PAGE->set_url('/mod/kuink/view.php?'.$_SERVER['QUERY_STRING']);
-    //die();
-    $PAGE->verify_https_required();
+    //$PAGE->verify_https_required();
   }
+  
+require_once ('./kuink-core/bootstrap/autoload.php');
+$layoutAdapter = \Kuink\UI\Layout\Layout::getInstance ();
+$layoutAdapter->setCache ( false );
+$layoutAdapter->setTheme ( $KUINK_BRIDGE_CFG->theme );
 
-include ('./kuink-core/view.php');
+$kuinkCore = new Kuink\Core($KUINK_BRIDGE_CFG, $layoutAdapter);
+$kuinkCore->run();
+
+if ($isAdmin) {
+  $performanceEnd = microtime(true);
+  $performanceTime = $performanceEnd - $performanceStart;
+  //echo('<script>$("#adminPerformance").html("ExecutionTime: '.$performanceTime.'");</script>');
+  $layoutAdapter->setExecutionTime ( number_format($performanceTime, 5) );
+}
+
+$layoutAdapter->render();
 
 //################################ KUINK END #######################################

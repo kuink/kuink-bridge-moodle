@@ -29,16 +29,15 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-
 $string['modulename'] = 'Kuink-Bridge';
 $string['modulenameplural'] = 'Kuinks';
-$string['kuink_string'] = '{$a}';
-$string['kuinkfieldset'] = 'Custom example fieldset';
-$string['kuinkname'] = 'kuink name';
-$string['kuinkname_help'] = 'This is the content of the help tooltip associated with the kuinkname field. Markdown syntax is supported.';
-$string['kuink'] = 'kuink';
-$string['pluginadministration'] = 'kuink administration';
-$string['pluginname'] = 'kuink';
-
-$string['appname'] = 'Aplicação';
+$string['appname'] = 'Aplicação Kuink';
 $string['config'] = 'Configuração';
+
+$string['kuink_string'] = '{$a}';
+$string['kuinkfieldset'] = 'Exemplo de conjunto de campos';
+$string['kuinkname'] = 'Rótulo';
+$string['kuinkname_help'] = 'Módulo de integração com aplicações kuink';
+$string['kuink'] = 'kuink';
+$string['pluginadministration'] = 'kuink administração';
+$string['pluginname'] = 'kuink';

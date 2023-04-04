@@ -21,19 +21,26 @@
 // 4- Create a token for a specific user and for the service 'My service' (Admin > Plugins > Web services > Manage tokens)
 // 5- Run this script directly from your browser: you should see 'Hello, FIRSTNAME'
 
-//for all dates, set utc timezone. jmpatricio
-date_default_timezone_set('UTC');
-
 global $CFG;
 require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/config.php');
 require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/login/lib.php');
 require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/webservice/lib.php');
 
-global $KUINK_INCLUDE_PATH, $KUINK_BRIDGE_CFG;
+global $KUINK_INCLUDE_PATH, $KUINK_BRIDGE_CFG, $KUINK;
+$KUINK = new stdClass();
+$KUINK->id = null;
+$KUINK->fullname = '';
+$KUINK->appname = 'framework';
+$KUINK->config = '<Configuration/>';
+//Turn off all error reporting to avoid garbage in response
+error_reporting(0);
 
 include ('./bridge_config.php');
 
-require_once($KUINK_INCLUDE_PATH."kuink_includes.php");
+//Get the function to execute
+$function = isset ( $_GET ['neonfunction'] ) ? ( string ) $_GET ['neonfunction'] : '';
+
+require_once ('./kuink-core/bootstrap/autoload.php');
 
 //Authenticate user if token is present
 if (isset($_GET['token'])) {
@@ -56,6 +63,7 @@ if (isset($_GET['token'])) {
 	require_login(null, true, $cm);
 }
 
-include ('./kuink-core/api.php');
+$kuinkCore = new Kuink\Core($KUINK_BRIDGE_CFG, null);
+$kuinkCore->call($function);
 
 ?>

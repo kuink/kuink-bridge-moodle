@@ -38,7 +38,13 @@ class mod_kuink_mod_form extends moodleform_mod {
         global $COURSE;
         $mform =& $this->_form;
 
-//-------------------------------------------------------------------------------
+        //only allow framework admins to add new neons
+        $coursecontext = get_context_instance(CONTEXT_COURSE, $COURSE->id);        
+        if (!(has_capability('moodle/site:config', $coursecontext))) {
+            throw new Exception('No permission');
+        }
+
+    //-------------------------------------------------------------------------------
     /// Adding the "general" fieldset, where all the common settings are showed
         $mform->addElement('header', 'general', get_string('general', 'form'));
 
@@ -54,7 +60,12 @@ class mod_kuink_mod_form extends moodleform_mod {
         $mform->addHelpButton('name', 'kuinkname', 'kuink');
 
     /// Adding the standard "intro" and "introformat" fields
-        $this->add_intro_editor();
+        // Adding the standard "intro" and "introformat" fields.
+        if ($CFG->branch >= 29) {
+            $this->standard_intro_elements();
+        } else {
+            $this->add_intro_editor();
+        }
 
 //-------------------------------------------------------------------------------
     /// Adding the rest of kuink settings, spreeading all them into this fieldset
@@ -64,7 +75,6 @@ class mod_kuink_mod_form extends moodleform_mod {
         $mform->addRule('appname', null, 'required', null, 'client');
 
         $mform->addElement('textarea', 'config', get_string('config', 'mycustomapp') ,'maxlength="2048" wrap="virtual" rows="15" cols="80"');
-        //$mform->setType('opcoesano', PARAM_TEXT);
         $mform->addRule('config', null, 'required', null, 'client');
         $mform->setDefault('config', '<Configuration/>');
 //-------------------------------------------------------------------------------
@@ -76,3 +86,4 @@ class mod_kuink_mod_form extends moodleform_mod {
 
     }
 }
+

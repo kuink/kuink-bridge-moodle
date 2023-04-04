@@ -65,18 +65,16 @@ defined('MOODLE_INTERNAL') || die();
 
 
 $capabilities = array(
-/*    'mod/kuink:view' => array(
+    'mod/kuink:addinstance' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_MODULE,
         'legacy' => array(
-            'guest' => CAP_ALLOW,
-            'student' => CAP_ALLOW,
             'teacher' => CAP_ALLOW,
             'editingteacher' => CAP_ALLOW,
-            'admin' => CAP_ALLOW
+            'manager' => CAP_ALLOW
         )
-    ),
-
+			)
+/*
     'mod/kuink:create' => array(
         'riskbitmask' => RISK_XSS,
         'captype' => 'write',
