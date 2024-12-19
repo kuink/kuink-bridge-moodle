@@ -24,7 +24,6 @@
  * @copyright 2010 Your Name
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 global $CFG;
 require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/config.php');
 require_once($CFG->libdir.'/ddllib.php');
@@ -32,6 +31,7 @@ require_once('lib.php');
 require_once('locallib.php');
 require_once($CFG->libdir.'/weblib.php');
 require_once($CFG->libdir.'/filelib.php');
+use core\context;
 
 //for all dates, set utc timezone. jmpatricio
 date_default_timezone_set('UTC');
@@ -68,7 +68,9 @@ $KUINK->course = $course;
 include ('./bridge_config.php');
 
 $isAdmin = false;
-$courseContext = get_context_instance(CONTEXT_COURSE, $course->id);
+
+//$courseContext = get_context_instance(CONTEXT_COURSE, $course->id);
+$courseContext = context_course::instance($COURSE->id);
 if(has_capability('moodle/site:config', $courseContext)) {
   $isAdmin = true;
   $performanceStart = microtime(true);
