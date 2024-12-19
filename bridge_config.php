@@ -29,8 +29,8 @@ if (!$USER->idnumber)
 else
 	$currentRole = 'Student';
 
-$courseContext = get_context_instance(CONTEXT_COURSE, $COURSE->id);
-//$courseContext = context_course::instance($COURSE->id);
+//$courseContext = get_context_instance(CONTEXT_COURSE, $COURSE->id);
+$courseContext = context_course::instance($COURSE->id);
 //var_dump($courseContext);
 if (has_capability('moodle/course:activityvisibility', $courseContext))
 	$currentRole = 'Teacher';

@@ -31,7 +31,6 @@ require_once('lib.php');
 require_once('locallib.php');
 require_once($CFG->libdir.'/weblib.php');
 require_once($CFG->libdir.'/filelib.php');
-use core\context;
 
 //for all dates, set utc timezone. jmpatricio
 date_default_timezone_set('UTC');
