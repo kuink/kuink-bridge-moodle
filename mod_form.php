@@ -39,7 +39,8 @@ class mod_kuink_mod_form extends moodleform_mod {
         $mform =& $this->_form;
 
         //only allow framework admins to add new neons
-        $coursecontext = get_context_instance(CONTEXT_COURSE, $COURSE->id);        
+        //$coursecontext = get_context_instance(CONTEXT_COURSE, $COURSE->id);        
+        $courseContext = context_course::instance($COURSE->id);
         if (!(has_capability('moodle/site:config', $coursecontext))) {
             throw new Exception('No permission');
         }
